@@ -21,7 +21,7 @@ const configs = {
         ]
     },
     trainee: {
-        title: "Sócio",
+        title: "Trainee",
         subtitle: "Partnership & Growth Protocol",
         fields: [
             { id: 'name', type: 'text', placeholder: 'Full Name' },
