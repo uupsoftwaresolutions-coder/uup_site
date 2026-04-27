@@ -91,3 +91,71 @@ textarea.input-bw {
     25% { transform: translateX(-4px); }
     75% { transform: translateX(4px); }
 }
+
+/* Container dos campos para dar espaçamento entre eles */
+#form-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* Espaço entre cada campo */
+}
+
+/* Estilo dos Inputs e Textarea */
+.input-bw {
+    width: 100%;
+    background: #f5f1f1; /* Fundo levemente cinza para destacar do preto puro */
+    border: 1px solid #f8f8fc; /* Borda sutil */
+    padding: 1.2rem;
+    color: #ffffff; /* Letras brancas */
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+/* Placeholder (texto de exemplo dentro do campo) */
+.input-bw::placeholder {
+    color: #52525b; /* Cinza médio para não confundir com o texto digitado */
+    font-weight: 300;
+}
+
+/* Efeito ao clicar no campo */
+.input-bw:focus {
+    border-color: #ffffff;
+    background: #121212;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+}
+
+/* Ajuste específico para a área de texto (IDEIA/PROJETO) */
+textarea.input-bw {
+    min-height: 450px; /* Aumentado consideravelmente o espaço para o texto */
+    line-height: 1.6;
+    text-transform: none; /* Permite texto normal na descrição para facilitar leitura */
+    width: 100%;
+    background: #ffffff; /* Fundo agora é branco */
+    border: 2px solid #000000; /* Borda preta brutalista */
+    padding: 1.2rem;
+    color: #000000 !important; /* LETRAS PRETAS */
+    font-size: 1rem;
+    font-weight: 600; /* Deixa a letra mais nítida */
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+/* Estilo do botão de envio para combinar */
+#dynamic-form button[type="submit"] {
+    background: #ffffff;
+    color: #000000;
+    font-weight: 900;
+    letter-spacing: 0.2em;
+    padding: 1.5rem;
+    border: 1px solid #ffffff;
+    transition: all 0.4s ease;
+}
+
+#dynamic-form button[type="submit"]:hover {
+    background: transparent;
+    color: #ffffff;
+}

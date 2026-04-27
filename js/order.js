@@ -16,12 +16,12 @@ const configs = {
         fields: [
             { id: 'name', type: 'text', placeholder: 'Full Name' },
             { id: 'contact', type: 'text', placeholder: 'WhatsApp / Telegram' },
-            { id: 'email', type: 'email', placeholder: 'Institutional Email' },
+            { id: 'email', type: 'email', placeholder: 'Institutional Email ou Pessoal' },
             { id: 'idea', type: 'textarea', placeholder: 'Project Vision / Core Objectives' }
         ]
     },
     trainee: {
-        title: "Trainee",
+        title: "Sócio",
         subtitle: "Partnership & Growth Protocol",
         fields: [
             { id: 'name', type: 'text', placeholder: 'Full Name' },
@@ -89,4 +89,3 @@ dynamicForm.addEventListener('submit', (e) => {
         dynamicForm.reset();
     }
 });
-
