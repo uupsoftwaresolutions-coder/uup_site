@@ -89,3 +89,118 @@ dynamicForm.addEventListener('submit', (e) => {
         dynamicForm.reset();
     }
 });
+
+const canvas = document.getElementById('particleCanvas');
+const ctx = canvas.getContext('2d');
+
+let particles = [];
+const particleCount = 80; // Quantidade de partículas
+
+// Ajusta o tamanho do canvas
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+
+// Objeto Partícula
+class Particle {
+    constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.speedX = (Math.random() - 0.5) * 0.5;
+        this.speedY = (Math.random() - 0.5) * 0.5;
+        this.size = Math.random() * 2;
+    }
+
+    update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        // Rebater nas bordas
+        if (this.x > canvas.width || this.x < 0) this.speedX *= -1;
+        if (this.y > canvas.height || this.y < 0) this.speedY *= -1;
+    }
+
+    draw() {
+        ctx.fillStyle = '#ffffff';
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+    }
+}
+
+// Inicializar
+function init() {
+    particles = [];
+    for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
+    }
+}
+
+// Desenhar linhas entre partículas próximas
+function connect() {
+    for (let a = 0; a < particles.length; a++) {
+        for (let b = a; b < particles.length; b++) {
+            let dx = particles[a].x - particles[b].x;
+            let dy = particles[a].y - particles[b].y;
+            let distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < 150) {
+                ctx.strokeStyle = `rgba(255, 255, 255, ${1 - distance / 150})`;
+                ctx.lineWidth = 0.5;
+                ctx.beginPath();
+                ctx.moveTo(particles[a].x, particles[a].y);
+                ctx.lineTo(particles[b].x, particles[b].y);
+                ctx.stroke();
+            }
+        }
+    }
+}
+
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+        p.update();
+        p.draw();
+    });
+    connect();
+    requestAnimationFrame(animate);
+}
+
+init();
+animate();
+
+/* --- LÓGICA DO MODAL DE VISÃO (UUP ENGINEERING) --- */
+
+const visionModal = document.getElementById('vision-modal');
+
+// Função para Abrir a Visão
+function openVision() {
+    if (visionModal) {
+        visionModal.classList.remove('hidden');
+        mainWrapper.classList.add('blur-active'); // Ativa o desfoque de fundo
+        document.body.style.overflow = 'hidden'; // Trava o scroll do site
+    }
+}
+
+// Função para Fechar a Visão
+function closeVision() {
+    if (visionModal) {
+        visionModal.classList.add('hidden');
+        mainWrapper.classList.remove('blur-active'); // Remove o desfoque
+        document.body.style.overflow = 'auto'; // Libera o scroll
+    }
+}
+
+// Atalho: Fechar se o usuário apertar a tecla ESC
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeVision();
+});
+
+// Atalho: Fechar se o usuário clicar no fundo escuro (fora da caixa)
+visionModal.addEventListener('click', (e) => {
+    if (e.target === visionModal) closeVision();
+});

@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="css/style_one.css">
 </head>
 <body class="bg-black text-white antialiased selection:bg-white selection:text-black">
-
+    <canvas id="particleCanvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0 opacity-40"></canvas>
+    <div id="main-wrapper" class="relative z-10"></div>
     <div id="main-wrapper">
         
         <header id="header" class="fixed w-full z-50 transition-all duration-500 border-b border-white/5">
@@ -18,15 +19,16 @@
                     <div class="w-10 h-10 bg-white flex items-center justify-center rounded-sm transition-transform group-hover:-rotate-90">
                         <span class="text-black font-black text-xl italic">U</span>
                     </div>
-                    <span class="font-black text-2xl tracking-tighter uppercase">UUP</span>
+                    <span class="font-black text-2xl tracking-tighter uppercase">UUP SOFTWARE ENGINEERING</span>
                 </div>
 
                 <nav class="hidden md:flex items-center gap-10">
-                    <a href="#about" class="text-xs uppercase tracking-widest hover:text-zinc-400 transition-colors">Vision</a>
                     <a href="#services" class="text-xs uppercase tracking-widest hover:text-zinc-400 transition-colors">Expertise</a>
+                    <button onclick="openVision()" class="text-xs uppercase tracking-widest hover:text-zinc-400 transition-colors">Vision</button>
                     <button onclick="openModal('trainee')" class="text-xs uppercase tracking-widest hover:text-zinc-400">Vem ser um Trainee conosco</button>
                     <button onclick="openModal('projeto')" class="px-6 py-2 bg-white text-black text-xs font-black uppercase tracking-widest hover:bg-zinc-200 transition-all">
                         Start Project
+                    
                     </button>
                 </nav>
             </div>
@@ -101,7 +103,63 @@
             </form>
         </div>
     </div>
-
+    <div id="vision-modal" class="fixed inset-0 z-[110] hidden flex items-center justify-center p-6 bg-black/95 backdrop-blur-2xl">
+        <div class="w-full max-w-6xl h-[85vh] bg-black border border-white/10 p-12 relative overflow-y-auto custom-scroll animate-slide-up">
+            
+            <button onclick="closeVision()" class="absolute top-8 left-8 flex items-center gap-2 text-zinc-500 hover:text-white transition-all group uppercase text-[10px] font-black">
+                <i data-lucide="arrow-left" class="w-4 h-4 transition-transform group-hover:-translate-x-1"></i>
+                Fechar
+            </button>
+    
+            <div class="mt-20 grid grid-cols-1 md:grid-cols-2 gap-16">
+                
+                <div class="border-l border-white/10 pl-8 py-4 group">
+                    <h3 class="text-xs font-mono text-zinc-600 mb-4 tracking-[0.3em]">01 // ARCHITECTURE</h3>
+                    <h2 class="text-4xl font-black italic uppercase tracking-tighter mb-6">System <span class="text-outline">Architecture</span></h2>
+                    <p class="text-zinc-400 leading-relaxed text-lg">
+                        Nossa visão é simplificar a complexidade. Acreditamos que a verdadeira sofisticação de um software não está no excesso de recursos, mas na <span class="text-white">robustez da sua lógica interna</span> e na escalabilidade da sua arquitetura.
+                    </p>
+                </div>
+    
+                <div class="border-l border-white/10 pl-8 py-4 group">
+                    <h3 class="text-xs font-mono text-zinc-600 mb-4 tracking-[0.3em]">02 // BUSINESS</h3>
+                    <h2 class="text-4xl font-black italic uppercase tracking-tighter mb-6">Beyond The <span class="text-outline">Code</span></h2>
+                    <p class="text-zinc-400 leading-relaxed text-lg">
+                        Código é apenas uma ferramenta; impacto é o objetivo. Enxergamos o software como o <span class="text-white">sistema nervoso de empresas modernas</span>. Projetamos sistemas que não apenas funcionam, mas que ditam o ritmo do crescimento.
+                    </p>
+                </div>
+    
+                <div class="border-l border-white/10 pl-8 py-4 group">
+                    <h3 class="text-xs font-mono text-zinc-600 mb-4 tracking-[0.3em]">03 // CULTURE</h3>
+                    <h2 class="text-4xl font-black italic uppercase tracking-tighter mb-6">The <span class="text-outline">Ecosystem</span></h2>
+                    <p class="text-zinc-400 leading-relaxed text-lg">
+                        Não somos uma fábrica, somos um ecossistema. Criamos uma rede de engenheiros que operam sob um padrão de <span class="text-white">excelência absoluta</span>, onde cada Trainee é moldado para ser um futuro sócio.
+                    </p>
+                </div>
+    
+                <div class="border-l border-white/10 pl-8 py-4 group">
+                    <h3 class="text-xs font-mono text-zinc-600 mb-4 tracking-[0.3em]">04 // FUTURE</h3>
+                    <h2 class="text-4xl font-black italic uppercase tracking-tighter mb-6">New <span class="text-outline">Paradigm</span></h2>
+                    <p class="text-zinc-400 leading-relaxed text-lg">
+                        Abraçamos o <span class="text-white">Vibe Coding</span> e a orquestração de IA para construir em dias o que levava meses. Lideramos a transição para um desenvolvimento hiper-acelerado, inteligente e resiliente fundamentados nos mais elevados padrões de arquitetura.
+                    </p>
+                </div>
+    
+            </div>
+        </div>
+    </div>
+    <footer class="footer-fixo">
+        <div class="footer-info">
+            <p>UUP SOFTWARE ENGINEERING</p>
+        </div>
+        
+        <div class="footer-links">
+            <a href="https://www.linkedin.com/in/jn-tito-neto-742385126" target="_blank" class="link-retro">LINKEDIN |</a>
+            <a href="https://github.com/Magneto1000" target="_blank" class="link-retro">GITHUB |</a>
+            <a href="https://www.tiktok.com/@printdevjtitoneto" target="_blank" class="link-retro">TIKTOK |</a>
+            <a href="mailto:uupsoftwaresolutions@gmail.com" class="link-retro">EMAIL</a>
+        </div>
+    </footer>
     <script src="js/order.js"></script>
 </body>
 </html>

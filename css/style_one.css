@@ -122,7 +122,7 @@ textarea.input-bw {
 /* Efeito ao clicar no campo */
 .input-bw:focus {
     border-color: #ffffff;
-    background: #121212;
+    background: #f3eeee;
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
 }
 
@@ -158,4 +158,97 @@ textarea.input-bw {
 #dynamic-form button[type="submit"]:hover {
     background: transparent;
     color: #ffffff;
+}
+
+/* Container do Footer */
+.footer-fixo {
+    position: fixed; /* Deixa ele sempre visível no rodapé da tela */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #000000; /* Fundo preto puro */
+    border-top: 1px solid #ffffff; /* Linha branca fina para separar do conteúdo */
+    display: flex;
+    justify-content: space-between; /* Texto de um lado, links do outro */
+    align-items: center;
+    padding: 1.5rem 6%;
+    z-index: 40; /* Fica abaixo do modal (z-100) mas acima do conteúdo */
+}
+
+/* Informação do Engenheiro (Lado Esquerdo) */
+.footer-info p {
+    color: #ffffff;
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+/* Links (Lado Direito) */
+.footer-links {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* Estilo Retro dos Links */
+.link-retro {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.7rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.link-retro:hover {
+    color: #a1a1aa; /* Cinza ao passar o mouse */
+    letter-spacing: 0.1em; /* Pequena animação de expansão */
+}
+
+/* Responsividade para Celular */
+@media (max-width: 768px) {
+    .footer-fixo {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+        padding: 1rem;
+    }
+}
+
+#particleCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0; /* Fica atrás de tudo */
+    pointer-events: none; /* Deixa os cliques passarem para os botões */
+}
+
+/* Garante que o conteúdo fique acima das partículas */
+#main-wrapper {
+    position: relative;
+    z-index: 10;
+}
+
+/* Scrollbar para o modal de visão */
+.custom-scroll::-webkit-scrollbar {
+    width: 4px;
+}
+.custom-scroll::-webkit-scrollbar-track {
+    background: #000;
+}
+.custom-scroll::-webkit-scrollbar-thumb {
+    background: #fff;
+}
+
+/* Intensificar o texto de contorno para o modal */
+#vision-modal .text-outline {
+    color: transparent;
+    -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.5);
+    transition: all 0.5s ease;
+}
+
+#vision-modal div:hover .text-outline {
+    -webkit-text-stroke: 0.5px rgba(255, 255, 255, 1);
 }
