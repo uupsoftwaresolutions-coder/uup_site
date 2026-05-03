@@ -1,0 +1,27 @@
+{
+  "name": "uup_site",
+  "version": "1.0.0",
+  "description": "UUP Software Engineering Portal",
+  "type": "module",
+  "main": "api/send.js",
+  "scripts": {
+    "start": "node api/send.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com-uup:uupsoftwaresolutions-coder/uup_site.git"
+  },
+  "keywords": [
+    "engineering",
+    "software",
+    "vibe-coding"
+  ],
+  "author": "Tito Neto",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.18.0",
+    "resend": "^3.2.0"
+  }
+}

@@ -67,28 +67,83 @@ window.addEventListener('scroll', () => {
         header.classList.remove('bg-black/90', 'backdrop-blur-md', 'h-16');
     }
 });
+/* --- FUNÇÃO DE TRANSMISSÃO DE FORMULÁRIO (UUP ENGINEERING) --- */
 
-// Validação e Envio (Exemplo de Sucesso)
-dynamicForm.addEventListener('submit', (e) => {
+dynamicForm.addEventListener('submit', function(e) {
+    // 1. IMPEDE O RECARREGAMENTO DA PÁGINA (Fundamental para o modal não travar)
     e.preventDefault();
-    const inputs = dynamicForm.querySelectorAll('.input-bw');
-    let valid = true;
 
-    inputs.forEach(i => {
-        if (i.value.trim() === "") {
-            i.style.borderColor = "#7f1d1d"; // Dark red para erro no P&B
-            valid = false;
-        } else {
-            i.style.borderColor = "";
-        }
-    });
+    // 2. VALIDAÇÃO DE CAMPOS (Assumindo que sua lógica de validação defina allValid)
+    // Se você não tiver uma variável allValid, pode remover o 'if' e deixar o código correr
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    
+    if (nameInput.value && emailInput.value) {
+        
+        // 3. CAPTURA DOS DADOS DO DOM
+        const formData = {
+            tipo: modalTitle.innerText.includes("Briefing") ? "projeto" : "trainee",
+            nome: nameInput.value,
+            email: emailInput.value,
+            contato: document.getElementById('contact')?.value || document.getElementById('portfolio')?.value || "Não informado",
+            mensagem: document.getElementById('idea')?.value || document.getElementById('motivation')?.value || "Sem mensagem"
+        };
 
-    if (valid) {
-        alert('DATA TRANSMITTED SUCCESSFULLY.');
-        closeModal();
-        dynamicForm.reset();
+        // 4. FEEDBACK VISUAL NO BOTÃO
+        const submitBtn = dynamicForm.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerText;
+        submitBtn.innerText = "TRANSMITTING...";
+        submitBtn.disabled = true;
+
+        // 5. DISPARO PARA A API (VERCEL SERVERLESS)
+        fetch('/api/send', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData)
+        })
+        .then(response => {
+            if (response.ok) {
+                // SUCESSO NA TRANSMISSÃO
+                alert('TRANSMISSION SUCCESSFUL. DATA LOGGED.');
+                
+                // LIMPA O FORMULÁRIO
+                dynamicForm.reset(); 
+                
+                // FECHA O MODAL (Certifique-se que o ID coincida com seu HTML)
+                closeModal(); 
+            } else {
+                // ERRO DE SERVIDOR (Ex: API fora do ar ou erro no Resend)
+                throw new Error('SERVER_RESPONSE_ERROR');
+            }
+        })
+        .catch(error => {
+            // ERRO DE REDE OU EXECUÇÃO
+            console.error('Critical Error:', error);
+            alert('TRANSMISSION FAILED. CHECK CONNECTION.');
+        })
+        .finally(() => {
+            // RESTAURA O BOTÃO PARA O ESTADO ORIGINAL
+            submitBtn.innerText = originalText;
+            submitBtn.disabled = false;
+        });
+    } else {
+        alert('PLEASE FILL ALL MANDATORY FIELDS.');
     }
 });
+
+/* --- FUNÇÃO AUXILIAR PARA FECHAR O MODAL --- */
+function closeModal() {
+    const modalContainer = document.getElementById('modal-container');
+    if (modalContainer) {
+        modalContainer.classList.add('hidden'); // Esconde o modal
+        document.body.style.overflow = 'auto';  // Libera o scroll do site
+        
+        // Se você usa o efeito de desfoque no fundo:
+        if (typeof mainWrapper !== 'undefined') {
+            mainWrapper.classList.remove('blur-active');
+        }
+    }
+}
 
 const canvas = document.getElementById('particleCanvas');
 const ctx = canvas.getContext('2d');
