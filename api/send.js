@@ -12,8 +12,8 @@ export default async function handler(req, res) {
     // Configuração de destino conforme sua regra de negócio
     const destinatario = (tipo === 'projeto') 
         ? 'uupsoftwaresolutions@gmail.com' 
-        : 'uup.application@gmail.com';
-
+        : 'uupsoftwaresolutions@gmail.com';
+  
     try {
         await resend.emails.send({
             from: 'UUP System <onboarding@resend.dev>', // Verifique o remetente no Resend
