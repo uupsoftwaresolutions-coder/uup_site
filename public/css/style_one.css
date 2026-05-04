@@ -81,7 +81,7 @@ textarea.input-bw {
 
 /* Feedback visual de erro */
 .input-bw.error-field {
-    border-bottom-color: #ffffff; /* Brilha no P&B */
+    border-bottom-color: #c94343; /* Brilha no P&B */
     background: rgba(255, 255, 255, 0.03);
     animation: shake 0.4s ease-in-out;
 }
@@ -102,10 +102,10 @@ textarea.input-bw {
 /* Estilo dos Inputs e Textarea */
 .input-bw {
     width: 100%;
-    background: #f5f1f1; /* Fundo levemente cinza para destacar do preto puro */
+    background: #f5f1f1; /* Fundo branco*/
     border: 1px solid #f8f8fc; /* Borda sutil */
     padding: 1.2rem;
-    color: #ffffff; /* Letras brancas */
+    color: #080808; /* Letras brancas */
     font-size: 0.95rem;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -115,7 +115,7 @@ textarea.input-bw {
 
 /* Placeholder (texto de exemplo dentro do campo) */
 .input-bw::placeholder {
-    color: #52525b; /* Cinza médio para não confundir com o texto digitado */
+    color: #000000; /* Cinza médio para não confundir com o texto digitado */
     font-weight: 300;
 }
 
@@ -157,7 +157,7 @@ textarea.input-bw {
 
 #dynamic-form button[type="submit"]:hover {
     background: transparent;
-    color: #ffffff;
+    color: #312929;
 }
 
 /* Container do Footer */
@@ -201,7 +201,7 @@ textarea.input-bw {
 }
 
 .link-retro:hover {
-    color: #a1a1aa; /* Cinza ao passar o mouse */
+    color: #f3f3f6; /* Cinza ao passar o mouse */
     letter-spacing: 0.1em; /* Pequena animação de expansão */
 }
 
@@ -245,7 +245,7 @@ textarea.input-bw {
 /* Intensificar o texto de contorno para o modal */
 #vision-modal .text-outline {
     color: transparent;
-    -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.5);
+    -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.997);
     transition: all 0.5s ease;
 }
 
