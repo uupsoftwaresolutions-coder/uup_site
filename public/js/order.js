@@ -259,3 +259,57 @@ document.addEventListener('keydown', (e) => {
 visionModal.addEventListener('click', (e) => {
     if (e.target === visionModal) closeVision();
 });
+
+const wppButton = document.getElementById("draggable-wpp");
+
+let isDragging = false;
+let offsetX, offsetY;
+
+wppButton.addEventListener("mousedown", (e) => {
+    isDragging = true;
+    // Calcula a distância do clique em relação à borda do botão
+    offsetX = e.clientX - wppButton.getBoundingClientRect().left;
+    offsetY = e.clientY - wppButton.getBoundingClientRect().top;
+    wppButton.style.transition = "none"; // Remove transição durante o arraste
+});
+
+document.addEventListener("mousemove", (e) => {
+    if (!isDragging) return;
+
+    // Define a nova posição baseada no mouse
+    let x = e.clientX - offsetX;
+    let y = e.clientY - offsetY;
+
+    // Aplica a posição
+    wppButton.style.left = `${x}px`;
+    wppButton.style.top = `${y}px`;
+    wppButton.style.bottom = "auto";
+    wppButton.style.right = "auto";
+});
+
+document.addEventListener("mouseup", () => {
+    isDragging = false;
+    wppButton.style.transition = "all 0.3s ease"; // Devolve a suavidade
+});
+
+// Suporte para Touch (Mobile)
+wppButton.addEventListener("touchstart", (e) => {
+    isDragging = true;
+    const touch = e.touches[0];
+    offsetX = touch.clientX - wppButton.getBoundingClientRect().left;
+    offsetY = touch.clientY - wppButton.getBoundingClientRect().top;
+});
+
+document.addEventListener("touchmove", (e) => {
+    if (!isDragging) return;
+    const touch = e.touches[0];
+    let x = touch.clientX - offsetX;
+    let y = touch.clientY - offsetY;
+
+    wppButton.style.left = `${x}px`;
+    wppButton.style.top = `${y}px`;
+});
+
+document.addEventListener("touchend", () => {
+    isDragging = false;
+});
